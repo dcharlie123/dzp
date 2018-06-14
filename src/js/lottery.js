@@ -1,7 +1,7 @@
 var turnplate, rotateTimeOut, rotateFn,
     lotteryItem = [],
     defaultItem = [];
-
+var 不是必中奖=true;
 turnplate = {
     turnNum: 3,
     restaraunts: [], //大转盘奖品名称
@@ -117,6 +117,8 @@ turnplate = {
 //     }
 // });
 
+
+
 // 获取抽奖次数和已获得奖励
 function getLotteryNum() {
     // $.ajax({
@@ -167,10 +169,16 @@ function getLotteryNum() {
 
     //     }
     // });
-    $('#J_scorenum').html(turnplate.turnNum);//设置
+    $(".lottery-title .title").html("惠州红花湖"); //设置抽奖标题
+    $(".lottery-title .summary").html("南都"); //设置抽奖摘要
+    $('#J_scorenum').html(turnplate.turnNum); //设置明天抽奖次数
     lotteryItem = ['1', '2', '3'];
-    lotteryItem.push('谢谢参与');
-    var colorVal = "#FFF4D6", colorArr = [];
+    if (不是必中奖) {
+        lotteryItem.push('谢谢参与');
+    }
+    //添加颜色
+    var colorVal = "#FFF4D6",
+        colorArr = [];
     for (var i = 0; i < lotteryItem.length; i++) {
         if (i % 2 == 0) {
             colorArr.push(colorVal);
@@ -178,7 +186,13 @@ function getLotteryNum() {
             colorArr.push('#fff');
         }
     }
+    //将颜色和奖品添加到转盘设置
     turnplate.restaraunts = lotteryItem;
+    turnplate.colors = colorArr;
+    //绘制大转盘
+    drawRouletteWheel();
+    //展开获奖信息
+    activityInit();
 }
 
 function drawRouletteWheel() {
@@ -217,9 +231,9 @@ function drawRouletteWheel() {
 
             ctx.fillText(text, -ctx.measureText(text).width / 2, 10);
 
-            if ((text.toString()).indexOf("移动电话卡") >= 0) {
-                ctx.fillText("(50元)", -25, 30);
-            }
+            // if ((text.toString()).indexOf("移动电话卡") >= 0) {
+            //     ctx.fillText("(50元)", -25, 30);
+            // }
 
             if ((text.toString()).indexOf("谢谢参与") >= 0) {
                 var img = document.getElementById("sorry-img");
