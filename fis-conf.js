@@ -74,7 +74,7 @@ fis.media('dev')
     })
     .match('*', {
         deploy: fis.plugin('local-deliver', {
-            to: 'C:/wamp/www/'+name
+            to: 'D:/software/wamp64/www/'+name
         })
     })
 
@@ -88,7 +88,7 @@ fis.media('www')
     })
     .match('*', {
         deploy: fis.plugin('local-deliver', {
-            to: 'F:/htdocs/www/'+name
+            to: 'D:/software/wamp64/www/'+name
         })
     })
 

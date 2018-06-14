@@ -1,7 +1,8 @@
 var turnplate, rotateTimeOut, rotateFn,
     lotteryItem = [],
     defaultItem = [];
-var 不是必中奖=true;
+var 必中奖 = false;
+var 中奖 = false;
 turnplate = {
     turnNum: 3,
     restaraunts: [], //大转盘奖品名称
@@ -25,97 +26,124 @@ turnplate = {
 // };
 
 //旋转转盘 item:奖品位置; txt：提示语;
-// rotateFn = function (item, txt){
-//     var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length*2));
-//     var tips="";
-//     if(angles<270){
-//         angles = 270 - angles;
-//     }else{
-//         angles = 360 - angles + 270;
-//     }
-//     $('#wheelcanvas').stopRotate();
-//     $('#wheelcanvas').rotate({
-//         angle:0,
-//         animateTo:angles+1800,
-//         duration:8000,
-//         callback:function (){
-//             if (txt.indexOf('谢谢参与') == -1) {
-//                 tips = '恭喜你获得：' + txt;
-//             }else if (txt.indexOf('移动电话卡') >= 0) {
-//                 tips = '恭喜你获得：' + txt + '(50元)';
-//             } else {
-//                 tips = txt;
-//             }
+rotateFn = function (item, txt) {
+    var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
+    var tips = "";
+    if (angles < 270) {
+        angles = 270 - angles;
+    } else {
+        angles = 360 - angles + 270;
+    }
+    $('#wheelcanvas').stopRotate();
+    $('#wheelcanvas').rotate({
+        angle: 0,
+        animateTo: angles + 1800,
+        duration: 8000,
+        callback: function () {
+            if (txt.indexOf('谢谢参与') == -1) {
+                tips = '恭喜你获得：' + txt;
+            } else {
+                tips = txt;
+            }
 
-//             if (txt.indexOf('谢谢参与') == -1) {
-//                 layer.open({
-//                     content: '<p style="line-height:25px;">'+tips+"</p><p style='font-size:14px;'>请到活动现场出示页面给工作人员兑换奖品</p>",
-//                     btn: '确定'
-//                 });
-//             }else{
-//                 layer.open({
-//                     content: tips,
-//                     btn: '确定'
-//                 });
-//             }
+            if (txt.indexOf('谢谢参与') == -1) {
+                layer.open({
+                    content: '<p style="line-height:25px;">' + tips + "</p><p style='font-size:14px;'>请到根据活动规则兑换奖品</p>",
+                    btn: '确定'
+                });
+            } else {
+                layer.open({
+                    content: tips,
+                    btn: '确定'
+                });
+            }
 
-//             turnplate.bRotate = !turnplate.bRotate;
-//         }
-//     });
-// };
+            turnplate.bRotate = !turnplate.bRotate;
+        }
+    });
+};
 
 // 抽奖
-// $('.pointer').click(function (){
-//     if (g.turnNum > 0) {
-//         $.ajax({
-//             url:$config.host() + 'm=Turntable&a=lottery',
-//             type:'POST',
-//             data: {
-//                 token: g.token
-//             },
-//             dataType:'JSON',
-//             success:function(data){
-//                 var item;
-//                 if (data.errcode == 0) {
-//                     item = data.data.id;
-//                     if(defaultItem % 2 == 0 && item > (lotteryItem.length/2)){
-//                         item = item + 1;
-//                     }
-//                     item = item + 1;
-//                 } else {
-//                     item = lotteryItem.length;
-//                 }
+$('.pointer').click(function () {
+    // if (g.turnNum > 0) {
+    //     $.ajax({
+    //         url:$config.host() + 'm=Turntable&a=lottery',
+    //         type:'POST',
+    //         data: {
+    //             token: g.token
+    //         },
+    //         dataType:'JSON',
+    //         success:function(data){
+    //             var item;
+    //             if (data.errcode == 0) {
+    //                 item = data.data.id;
+    //                 if(defaultItem % 2 == 0 && item > (lotteryItem.length/2)){
+    //                     item = item + 1;
+    //                 }
+    //                 item = item + 1;
+    //             } else {
+    //                 item = lotteryItem.length;
+    //             }
 
-//                 if (turnplate.bRotate) return;
-//                 turnplate.bRotate = !turnplate.bRotate;
-//                 rotateFn(item, turnplate.restaraunts[item - 1]);
-//                 g.turnNum = g.turnNum - 1;
-//                 setTimeout(function () {
-//                     $('#J_scorenum').html(g.turnNum);
+    //             if (turnplate.bRotate) return;
+    //             turnplate.bRotate = !turnplate.bRotate;
+    //             rotateFn(item, turnplate.restaraunts[item - 1]);
+    //             g.turnNum = g.turnNum - 1;
+    //             setTimeout(function () {
+    //                 $('#J_scorenum').html(g.turnNum);
 
-//                     if(item != 8){
-//                         $('#myrewardMain p').hide();
-//                         $('#myrewardMain li').show();
-//                         $('.reward-name').html(turnplate.restaraunts[item - 1]);
-//                         $('.reward-date').html("兑换码："+data.data.code);
-//                     }
-//                 }, 5500)
-//             },
-//             error:function(){
-//                 layer.open({
-//                     content: '请重试!',
-//                     btn: '确定'
-//                 });
-//             }
-//         })
-//     }else{
-//         layer.open({
-//             content: '<p style="line-height:25px;">没有抽奖数啦，明天再来吧！</p>' +
-//             '<p style="font-size:14px;">每天都可获得抽奖机会。</p>',
-//             btn: '确定'
-//         });
-//     }
-// });
+    //                 if(item != 8){
+    //                     $('#myrewardMain p').hide();
+    //                     $('#myrewardMain li').show();
+    //                     $('.reward-name').html(turnplate.restaraunts[item - 1]);
+    //                     $('.reward-date').html("兑换码："+data.data.code);
+    //                 }
+    //             }, 5500)
+    //         },
+    //         error:function(){
+    //             layer.open({
+    //                 content: '请重试!',
+    //                 btn: '确定'
+    //             });
+    //         }
+    //     })
+    // }else{
+    //     layer.open({
+    //         content: '<p style="line-height:25px;">没有抽奖数啦，明天再来吧！</p>' +
+    //         '<p style="font-size:14px;">每天都可获得抽奖机会。</p>',
+    //         btn: '确定'
+    //     });
+    // }
+    if (turnplate.turnNum > 0) { //还有抽奖次数
+        var item, id = 3;
+        if (中奖) {
+            if (必中奖) {
+                item = id;
+            } else {
+                // console.log(defaultItem)
+                if (defaultItem.length % 2 == 0) { //奖品为偶数
+                    if (id >= (lotteryItem.length / 2)) {
+                        item = id + 1
+                    } else {
+                        item = id
+                    }
+                } else {
+                    item = id;
+                }
+            }
+        } else {
+            item = lotteryItem.length
+        }
+        if (turnplate.bRotate) return; //如果大转盘在转则返回
+        turnplate.bRotate = !turnplate.bRotate;
+        rotateFn(item, turnplate.restaraunts[item - 1]);
+    } else {
+        layer.open({
+            content: '<p style="line-height:25px;">没有抽奖数啦，明天再来吧！</p>',
+            btn: '确定'
+        });
+    }
+});
 
 
 
@@ -172,8 +200,16 @@ function getLotteryNum() {
     $(".lottery-title .title").html("惠州红花湖"); //设置抽奖标题
     $(".lottery-title .summary").html("南都"); //设置抽奖摘要
     $('#J_scorenum').html(turnplate.turnNum); //设置明天抽奖次数
-    lotteryItem = ['1', '2', '3'];
-    if (不是必中奖) {
+    defaultItem = ['1', '2', '3','4'];
+    lotteryItem = []
+    if (必中奖) {
+        lotteryItem = defaultItem.slice(0) //深拷贝
+    } else {
+        lotteryItem = defaultItem.slice(0)
+        if (defaultItem.length % 2 == 0) {
+            var index = defaultItem.length / 2;
+            lotteryItem.splice(index, 0, '谢谢参与');
+        }
         lotteryItem.push('谢谢参与');
     }
     //添加颜色
