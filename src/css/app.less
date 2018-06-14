@@ -1,0 +1,203 @@
+@import "common.less";
+
+/*全局变量*/
+*{margin:0;padding:0}
+ul,li{list-style-type:none;}
+img {border:0;-ms-interpolation-mode: bicubic;max-width: 100%;}
+a,input,textarea,button,label{outline: none;-webkit-appearance: none;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+html,body{height:100%;}
+body{
+    font-size: 100%;
+    font-family: PingFangSC-Light, Helvetica, "microsoft yahei", sans-serif;
+    color:#333;
+    position: relative;
+    font-size: 30/@rem;
+    background: rgb(239, 241, 242);
+    a{color:#333;text-decoration:none;cursor: pointer;}
+}
+
+//公用样式
+.body{min-height: 100%;}
+.disNone{display: none;}
+.fl{float:left;}
+.fr{float:right;}
+
+.loading{position:fixed; z-index:1; width:100%; height:100%; background:rgba(0,0,0,0.5); color:#fff; text-align:center; padding-top:80%; overflow:hidden; font-size:28/@rem;}
+
+.index {
+    .banner, .banner img {
+        width: 100%;
+        height: 375/@rem;
+        background: rgb(239, 241, 242);
+        position: relative;
+        z-index: 0;
+    }
+
+    .content {
+        padding: 24/@rem 30/@rem;
+        background: #fff;
+
+        .chairTitle {
+            font-size: 30/@rem;
+            color: #0B0C0D;
+            margin-bottom: 20/@rem;
+        }
+
+        .timeNplace {
+            font-size: 24/@rem;
+            color: #5E5F61;
+            div {
+                line-height: 40/@rem;
+                span:first-child {float: left; font-weight: bold; color: #5E5F61;}
+                div {overflow: hidden; text-align: justify;}
+            }
+        }
+    }
+
+    .form {
+        padding: 0 30/@rem;
+        .quiz-title {
+            margin: 38/@rem 0 32/@rem 0;text-align: center;font-size: 24/@rem;color: #5E5F61; line-height:40/@rem;
+            h1 {font-size: 28/@rem; color: #0B0C0D; margin-bottom: 10/@rem;}
+            span{
+                color:#cb1709;
+            }
+        }
+
+        .quiz-wrapper {width: 100%; text-align: center; }
+
+        label {position: relative; height:80/@rem; display:block; margin: 0 auto 20/@rem;
+            span {position: absolute; font-size: 28/@rem; left: 24/@rem; line-height: 80/@rem; z-index:1;}
+            .input {
+                width: 100%;
+                height: 80/@rem; line-height:40/@rem; padding:20/@rem 0;
+                background: #FFFFFF;
+                border: 1px solid #BEC2C6;
+                padding: 0 24/@rem;
+                text-indent: 2.5em;
+                font-size: 28/@rem;
+                color: #0B0C0D;
+                box-sizing: border-box;
+            }
+        }
+
+        #submit {
+            width: 100%;
+            height: 1.07rem;
+            margin-top: 10/@rem;
+            border: none;
+            background: #594D9C;
+            border-radius: 10/@rem;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button {outline: none;
+            &:hover {
+                box-shadow: 0 0 2px #999;
+            }
+        }
+    }
+
+    .alert {width: 5rem;height: 3rem;padding: 0.2rem 0.2rem 0 0.2rem;background: #FFF;position: absolute;z-index: 999;top: 50%;left: 50%;transform: translate(-50%, -50%);border-radius: 5px;display: flex;flex-direction: column;justify-content: space-around;font-size: 16px;box-sizing: border-box;}
+    .alert-text {text-align: center;}
+    .alert a {align-self: center;display: inline-block;margin: 0;padding: 0;width: 100%;text-align: center; /* line-height: 1; */color: green;border-top: 1px solid #CCD1D3;padding-top: 8px; /* height: 1rem; */}
+    .mask-a {position: absolute;z-index: 998;top: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, .3)}
+}
+
+.lottery{
+    /* 大转盘样式 */
+    .banner{display:block;width:80%;margin-left:auto;margin-right:auto;}
+    .banner .turnplate{display:block;width:100%;position:relative;}
+    .banner .turnplate canvas.item{width:100%;}
+    .banner .turnplate img.pointer{position:absolute;width:31.5%;height:42.5%;left:34.6%;top:23%;}
+
+    .zp{background: #EC2022; position: relative; height:1060/@rem; background:url('/src/img/lottery_bg.jpg') 50% 0/cover no-repeat; overflow: hidden}
+    .lottery-title{text-align: center;font-size:36/@rem; line-height:60/@rem; color:#fff; margin-bottom:15/@rem; margin-top:185/@rem;}
+    .myticket-title{width:419/@rem; height:80/@rem; font-size: 30/@rem; margin: 0 auto 20/@rem; background: #FFCE00; border-radius: 30px; color: #e22832; text-align: center; line-height:80/@rem;}
+    .myticket-title span{font-size: 40/@rem;}
+
+    .prompt {
+        color: #fff;
+        text-align: center;
+        a {
+            color: #fff;
+            &:hover {
+                color: #e22832;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .panel-box {
+        font-size: 13px;
+        color: #815437;
+        background-color: #f1a94d;
+        padding: 20px;
+    }
+
+
+    .panel {
+        background-color: #fff9d9;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        ul {
+            margin-top: 20px;
+            li:first-child {padding-top: 0;}
+        }
+        h3 {text-align: center;color: #e22832;font-size: 20px;font-weight: normal;}
+    }
+
+    // 获得的奖励
+    .myreward-title{position: relative;}
+    .reward-name {
+        font-size: 15px;
+        color: #333;
+    }
+    .reward-date {
+        font-weight:bold;
+    }
+    .myreward ul li {
+        border-bottom: 1px dotted #b3af9a; overflow: hidden;
+        line-height:20px;
+        padding: 10px 0;
+        &:last-child{border:none; text-align:center; padding-bottom:0; font-size:24/@rem;}
+    }
+    .arrow {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .arrow::before {
+        display: block;
+        height: 26px;
+        width: 26px;
+    }
+    .arrow.up::before {
+        content: url(//m.mp.oeeee.com/Public/Activity/Turntable/images/icon50_arrowup.png);
+    }
+    .arrow.down::before {
+        content: url(//m.mp.oeeee.com/Public/Activity/Turntable/images/icon50_arrowdown.png);
+    }
+
+    // 活动规则
+    .rule ul li {
+        margin-bottom: 20px;
+    }
+    .rule ul li:first-child {
+        margin-bottom: 0;
+    }
+    .rule ul li:last-child {
+        margin-bottom: 0;
+    }
+    .rule ul li p {
+        line-height: 1.6;
+    }
+    .rule ul li p span {
+        color: #e22832;
+    }
+}

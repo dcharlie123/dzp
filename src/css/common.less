@@ -1,0 +1,19 @@
+@rex-screen : 750;
+@rem : @rex-screen/10rem;
+@sreen : 500px;
+
+@color-blue : #4194cd;
+
+@border : #D8D8D8;
+
+.animate-delay(@speed){
+  animte-delay:@speed;
+  -webkit-animation-delay: @speed;
+}
+
+.border-half-bottom(@color){
+    position: relative;
+    &:before{
+        position: absolute;content: '';width: 100%;left: 0;bottom: 0;height: 1px;transform: scale(1,0.5);transform-origin: center bottom;border-bottom: 1px solid @color;
+    }
+}

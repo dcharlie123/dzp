@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>南方都市报APP报名抽奖活动</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/src/css/app.less">
+</head>
+<body>
+<!-- <div class="loading">
+    加载中,请稍后…
+</div> -->
+<div class="lottery">
+    <div class="zp">
+        <div class="lottery-title">
+            惠州红花湖公益跑<br>
+            南都APP报名抽奖活动
+        </div>
+        <div class="myticket-title">剩余抽奖数：<span id="J_scorenum">0</span></div>
+        <div class="zp-main">
+            <!-- 转盘 开始 -->
+            <img src="//m.mp.oeeee.com/Public/Activity/Turntable/images/1.png" id="shan-img" style="display:none;" />
+            <img src="//m.mp.oeeee.com/Public/Activity/Turntable/images/2.png" id="sorry-img" style="display:none;" />
+            <div class="banner">
+                <div class="turnplate" style="background-image:url(//m.mp.oeeee.com/Public/Activity/Turntable/images/turnplate-bg.png);background-size:100% 100%;">
+                    <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+                    <img class="pointer" src="//m.mp.oeeee.com/Public/Activity/Turntable/images/turnplate-pointer.png"/>
+                </div>
+            </div>
+            <!-- 转盘 结束 -->
+        </div>
+    </div>
+
+    <div class="panel-box">
+        <p class="prompt">每天获得1次抽奖机会</p>
+        <p class="prompt" style="margin-top:4px;">活动当天5月26日更有3次抽奖机会哦~</p>
+        <div class="myreward panel">
+            <div class="myreward-title" id="arrow">
+                <h3>我获得的奖励</h3>
+                <p class="arrow up" data-status="up" id=""></p>
+            </div>
+
+            <ul id="myrewardMain">
+                <p>暂无获奖记录</p>
+                <li style="display:none">
+                    <span class="fl reward-name">奖品名称</span>
+                    <span class="fr reward-date">兑换码</span>
+                </li>
+                <li style="display:none">请到活动现场出示页面给工作人员兑换奖品</li>
+            </ul>
+        </div>
+        <div class="rule panel">
+            <h3>活动规则</h3>
+            <ul>
+                <li>
+                    <p><span>活动时间</span>：5月17日-5月26日</p>
+                </li>
+                <li>
+                    <p><span>活动规则</span>：1、下载或更新南方都市报APP最新版本。使用真实的手机注册并登录即可参与。</p>
+
+                    <p>2、点击首页“惠州红花湖公益跑”链接或者个人中心里的“惠州红花湖公益跑”活动即可参与报名抽奖。</p>
+
+                    <p>3、每天可获得1次抽奖机会，活动当天5月26日有3次抽奖机会。</p>
+
+                    <p>4、奖品可在活动现场凭借身份证和兑换码进行兑换。</p>
+
+                    <p>5、活动时间为5月17日至5月26日。有疑问可在个人中心反馈，解释权归南方都市报所有。</p>
+                </li>
+                <li>
+                    <p><span>活动奖励</span>：卡包，袖套，自拍杆，餐具，保温杯，手机环，玻璃杯（奖品由鑫月广场，苏宁易购惠州分公司提供）</p>
+                </li>
+                <li>
+                    <p><span>友情提示</span>：5月26日当天，活动现场将有更多奖品发放，请准时参加哦~</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/src/lib/flexible.js"></script>
+<script type="text/javascript" src="./node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="//m.mp.oeeee.com/Public/Activity/Turntable/js/awardRotate.js"></script>
+<script type="text/javascript" src="//m.mp.oeeee.com/Public/Activity/Turntable/js/layer.js?v=0.1"></script>
+<script type="text/javascript" src="/src/js/config.js"></script>
+<script type="text/javascript" src="/src/js/index.js"></script>
+<script type="text/javascript" src="/src/js/lottery.js"></script>
+
+<script>
+    // var g;
+
+    // if(!$config.isNdApp() && window.location.host == "m.mp.oeeee.com"){
+    //     /*layer.open({
+    //         content:'不在app内',
+    //         btn: '确定'
+    //     })*/
+    //     window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.nandu&ckey=CK1396453548139"
+    // }else{
+    //     if(window.location.host != "m.mp.oeeee.com"){
+    //         window.ndapp = {};
+    //         ndapp.user = ndapp.user || {};
+    //         $config.token = 'M77PRAHn7ZMmtU44jlU7s4c6cM2:Pli2XiHFYcE5gMPY5LtCSisLw3mY7dsS6HN6W6WLCsOxfV6:rrQ1NSkZ90X7oMUVvlH:CdP9kC1qMOSfuaK**C6Aa*eTIHeb48bho0tIpO1v7hDCWv*xH5c9Cw';
+    //         // $config.token = 'GdX*9MV8aiejILmm2efHWcamhQzQuHq7cluljTTOLIE3ZRmmOW4:iasJ*CfyTJ0wget6awDBhrQ';
+    //     }else{
+    //         window.ndapp = ndapp || {};
+    //         ndapp.user = ndapp.user || {};
+    //         $config.token = ndapp.user.token;
+    //     }
+
+    //     isApply();
+
+        // g = {};
+    //     g.token = $config.token;
+        // g.turnNum = 0;
+
+    //     if(!$config.token){
+    //         ndapp.follow();
+    //         showAlert('请先登录');
+    //     }
+    // }
+</script>
+
+</body>
+</html>
